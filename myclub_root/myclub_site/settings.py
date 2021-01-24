@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+
+import environ
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@jp&+pf=((i0v^r2^a0s&k@_b$utbopzkx1vori9u508v)uk)j'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG', default=True)
 
 ALLOWED_HOSTS = []
 
@@ -82,11 +87,11 @@ WSGI_APPLICATION = 'myclub_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('POSTGRESQL_DB_NAME', 'defaul_value'),
-        'USER': os.environ.get('POSTGRESQL_DB_USER', 'defaul_value'),
-        'PASSWORD': os.environ.get('POSTGRESQL_DB_PASSWORD', 'defaul_value'),
-        'HOST': os.environ.get('POSTGRESQL_DB_HOST', 'localhost'),
-        'PORT': os.environ.get('POSTGRESQL_DB_USER', '5432'),
+        'NAME': env('POSTGRESQL_DB_NAME'),
+        'USER': env('POSTGRESQL_DB_USER'),
+        'PASSWORD': env('POSTGRESQL_DB_PASSWORD'),
+        'HOST': env('POSTGRESQL_DB_HOST'),
+        'PORT': env('POSTGRESQL_DB_PORT'),
     }
 }
 
