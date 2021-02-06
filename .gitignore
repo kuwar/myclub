@@ -3,3 +3,4 @@ env_myclub/
 .idea
 *.pyc
 venv/
+.DS_Store

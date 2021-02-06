@@ -24,11 +24,22 @@ def index(request, year=date.today().year, month=date.today().month):
 
     title = "MyClub Event Calendar - %s %s" % (month_name, year)
 
+    announcements = [
+        {
+            'date': '6-10-2020',
+            'announcement': "Club Registrations Open"
+        },
+        {
+            'date': '6-15-2020',
+            'announcement': "Joe Smith Elected New Club President"
+        }
+    ]
+
     # return HttpResponse("<h1>%s</h1><p>%s</p>" % (title, cal))
     return render(
         request,
         'events/index.html',
-        {'title': title, 'cal': cal}
+        {'title': title, 'cal': cal, "announcements": announcements}
     )
 
 
