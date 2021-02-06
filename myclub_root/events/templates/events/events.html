@@ -4,5 +4,10 @@
 
 {% block content %}
 <h1>{{ title }}</h1>
-<p>{% autoescape off %}{{ cal }}{% endautoescape %}</p>
+
+<ul>
+    {% for event in events %}
+        <li>{{event.name}}</li>
+    {% endfor %}
+</ul>
 {% endblock content %}

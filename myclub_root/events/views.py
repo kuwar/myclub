@@ -5,6 +5,8 @@ from django.http import HttpResponse
 import calendar
 from calendar import HTMLCalendar
 
+from .models import Event
+
 
 # Create your views here.
 
@@ -23,4 +25,18 @@ def index(request, year=date.today().year, month=date.today().month):
     title = "MyClub Event Calendar - %s %s" % (month_name, year)
 
     # return HttpResponse("<h1>%s</h1><p>%s</p>" % (title, cal))
-    return render(request, 'base.html', {'title': title, 'cal': cal})
+    return render(
+        request,
+        'events/index.html',
+        {'title': title, 'cal': cal}
+    )
+
+
+def all_events(request):
+    events = Event.objects.all()
+
+    return render(
+        request,
+        'events/events.html',
+        {'title': "Event list", 'events': events}
+    )

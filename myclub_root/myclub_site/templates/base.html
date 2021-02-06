@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Basic Site Template</title>
+    <title>
+        {% block title %}
+        {{ page_title | default:"Untitled Page" }}
+        {% endblock title %}
+    </title>
 </head>
 <body>
 
-<h1>{{ title }}</h1>
-<p>{% autoescape off %}{{ cal }}{% endautoescape %}</p>
+{% block content %}
+<p>Placeholder text in base template. Replace with page content.</p>
+{% endblock content %}
 
 </body>
 </html>

@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # '' must be the last entry
-    path('events/', include('events.urls')),
+    path('', include('events.urls')),
 ]
