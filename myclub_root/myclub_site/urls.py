@@ -43,6 +43,8 @@ urlpatterns = [
         name='password_reset_complete',
     ),
 
+    path('api/v1/events', include('events.urls')),
+
     # '' must be the last entry
     path('', include('events.urls')),
 ]

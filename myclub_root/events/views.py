@@ -1,14 +1,19 @@
 from datetime import date
-
-from django.shortcuts import render
-from django.http import HttpResponse
 import calendar
 from calendar import HTMLCalendar
 
+from django.shortcuts import render
+from django.http import HttpResponse
+from rest_framework import viewsets
+
+from .serializers import EventSerializer
 from .models import Event
 
 
-# Create your views here.
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all().order_by('event_date')
+    serializer_class = EventSerializer
+
 
 def index(request, year=date.today().year, month=date.today().month):
     t = date.today()
